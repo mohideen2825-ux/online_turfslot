@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TurfSlot</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="admin-layout">
+        <aside class="sidebar">
+            <div class="logo"><i class="fas fa-user-shield"></i> TurfSlot</div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active" data-tab="dashboard"><i class="fas fa-home"></i>
+                            <span>Dashboard</span></a></li>
+                    <li><a href="#" data-tab="bookings"><i class="fas fa-calendar-check"></i> <span>Bookings</span></a>
+                    </li>
+                    <li><a href="#" data-tab="pricing"><i class="fas fa-tags"></i> <span>Pricing</span></a></li>
+                    <li><a href="#" data-tab="settings"><i class="fas fa-cogs"></i> <span>Settings</span></a></li>
+                    <li><a href="#" id="admin-logout"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <header>
+                <div class="user-info">Admin</div>
+            </header>
+
+            <section id="dashboard" class="tab-content active">
+                <h2 style="margin-bottom: 30px;">Dashboard Overview</h2>
+                <div class="stats-cards">
+                    <div class="card">
+                        <h3>Total Bookings today</h3>
+                        <p id="today-bookings-count">0</p>
+                    </div>
+                    <div class="card">
+                        <h3>Revenue Today (Est.)</h3>
+                        <p id="today-revenue">₹0</p>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div style="display: flex; gap: 10px; margin-top: 15px;">
+                        <button class="cta-btn btn-small" onclick="openBookingModal()">Add New Booking</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="bookings" class="tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2>All Bookings</h2>
+                    <button class="cta-btn btn-small" onclick="openBookingModal()"><i class="fas fa-plus"></i> Add
+                        Booking</button>
+                </div>
+                <div class="filter-controls" style="display: flex; align-items: center; gap: 15px;">
+                    <div class="input-group" style="margin-bottom: 0;">
+                        <input type="date" id="admin-date-picker" title="Filter by date (leave empty for all)">
+                    </div>
+                    <div class="input-group" style="margin-bottom: 0;">
+                        <select id="admin-time-filter" style="min-width: 220px; height: 45px; padding: 0 15px;">
+                            <option value="all">All Times</option>
+                            <option value="morning">Morning (6 AM - 12 PM)</option>
+                            <option value="evening">Evening (12 PM - 10 PM)</option>
+                            <option value="night">Night (10 PM - 6 AM)</option>
+                        </select>
+                    </div>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);"></span>
+                </div>
+                <div class="table-responsive">
+                    <table class="bookings-table">
+                        <thead>
+                            <tr>
+                                <th>Time Slot</th>
+                                <th>Sport</th>
+                                <th>Ground</th>
+                                <th>Customer</th>
+                                <th>Mobile</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookings-table-body">
+                            <!-- Rows injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="pricing" class="tab-content">
+                <h2>Pricing Management</h2>
+                <form id="pricing-form" class="admin-form card">
+                    <div class="pricing-group">
+                        <h3
+                            style="margin-bottom: 20px; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); display: inline-block;">
+                            Weekday Pricing (Mon - Fri)</h3>
+                        <div class="form-grid">
+                            <div class="input-group">
+                                <label>Football Full Ground (₹)</label>
+                                <input type="number" id="price-fb-full" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Football Half Ground (₹)</label>
+                                <input type="number" id="price-fb-half" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Cricket Full Ground (₹)</label>
+                                <input type="number" id="price-ck-full" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pricing-group" style="margin-top: 40px;">
+                        <h3
+                            style="margin-bottom: 20px; color: var(--secondary-color); border-bottom: 2px solid var(--secondary-color); display: inline-block;">
+                            Weekend Pricing (Sat - Sun)</h3>
+                        <div class="form-grid">
+                            <div class="input-group">
+                                <label>Football Full Ground (₹)</label>
+                                <input type="number" id="price-fb-full-weekend" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Football Half Ground (₹)</label>
+                                <input type="number" id="price-fb-half-weekend" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Cricket Full Ground (₹)</label>
+                                <input type="number" id="price-ck-full-weekend" required>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="cta-btn">Save Prices</button>
+                </form>
+            </section>
+
+            <section id="settings" class="tab-content">
+                <h2>Settings</h2>
+                <div class="card">
+                    <h3>Turf Availability</h3>
+                    <div class="input-group"
+                        style="flex-direction: row; align-items: center; gap: 15px; margin-top: 10px;">
+                        <label>Status:</label>
+                        <select id="turf-status-select" class="btn-small"
+                            style="background: var(--dark-bg); color: white; border: 1px solid rgba(255,255,255,0.1);">
+                            <option value="open">Open</option>
+                            <option value="closed">Closed</option>
+                        </select>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 10px;">Set to 'Closed' to disable
+                        all bookings instantly.</p>
+                </div>
+
+                <div class="card" style="margin-top: 20px;">
+                    <h3>Slot Management</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;">Enable or disable
+                        specific time slots globally.</p>
+                    <div id="slots-toggle-grid" class="slots-grid"
+                        style="grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));">
+                        <!-- Slots will be injected here with toggle switches -->
+                    </div>
+                    <button id="save-settings-btn" class="cta-btn" style="margin-top: 20px;">Save Settings</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Admin Booking Modal -->
+    <div id="admin-modal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <span class="close-modal" onclick="closeAdminModal()">&times;</span>
+            <h2 id="modal-title">Add Booking</h2>
+            <form id="admin-booking-form" style="margin-top: 20px; text-align: left;">
+                <input type="hidden" id="edit-doc-id">
+                <div class="input-group">
+                    <label>User Email</label>
+                    <input type="email" id="modal-email" required placeholder="user@example.com">
+                </div>
+                <div class="input-group">
+                    <label>Mobile</label>
+                    <input type="tel" id="modal-mobile" required placeholder="10-digit number">
+                </div>
+                <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="input-group">
+                        <label>Sport</label>
+                        <select id="modal-sport">
+                            <option value="football">Football</option>
+                            <option value="cricket">Cricket</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Ground <span id="modal-price-display"
+                                style="float: right; color: var(--secondary-color); font-weight: bold;"></span></label>
+                        <select id="modal-ground">
+                            <option value="full">Full Ground</option>
+                            <option value="half_A">Half Ground</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="input-group">
+                        <label>Date</label>
+                        <input type="date" id="modal-date" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Time Slot</label>
+                        <select id="modal-slot">
+                            <!-- Slots injected by JS -->
+                        </select>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Status</label>
+                    <select id="modal-status">
+                        <option value="confirmed">Confirmed</option>
+                        <option value="cancelled">Cancelled</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                </div>
+                <button type="submit" class="cta-btn full-width" style="margin-top: 10px;">Save Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

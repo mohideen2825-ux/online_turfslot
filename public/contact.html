@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - TurfSlot</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/user.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <nav id="navbar">
+        <div class="logo"><i class="fas fa-futbol"></i> TurfSlot</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#book">Book Turf</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <header class="contact-header"
+        style="height: 50vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1551958219-acbc608c6377?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center;">
+        <h1 class="fade-in" style="font-size: 3.5rem; text-transform: uppercase;">Get in Touch</h1>
+    </header>
+
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="text-center" style="margin-bottom: 50px;">We'd Love to Hear From You</h2>
+
+            <div class="contact-grid">
+                <div class="contact-info fade-in delay-1">
+                    <div class="contact-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>92 Turfslot, Near New Busstand, Kayalpattinam, 628204</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h3>TurfSlot</h3>
+                            <p>+91 8248416469</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>support@turfzone.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-map fade-in delay-2" style="border-radius: 15px; overflow: hidden; height: 400px;">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31508.95482419684!2d78.1025927!3d8.5655608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0392101e701bd9%3A0xa012997c2d7ca290!2sKayalpattinam%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1707000000000!5m2!1sen!2sin"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 TurfSlot. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+
+</html>

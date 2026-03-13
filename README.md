@@ -1,1 +1,1 @@
-live in : www.turfslot.web.app
+live in : turfslot.web.app
